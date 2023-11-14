@@ -586,6 +586,13 @@ pub const Surface = struct {
         const rect_ptr = if (rect) |_rect| _rect.getSdlPtr() else null;
         if (c.SDL_FillRect(s.ptr, rect_ptr, c.SDL_MapRGBA(s.ptr.*.format, color.r, color.g, color.b, color.a)) < 0) return makeError();
     }
+
+    pub fn size(s: Surface) Size {
+        return Size{
+            .width = s.ptr.w,
+            .height = s.ptr.h,
+        };
+    }
 };
 
 pub fn loadBmpFromConstMem(data: []const u8) !Surface {
