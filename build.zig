@@ -227,7 +227,7 @@ pub fn linkTtf(_: *Sdk, exe: *LibExeObjStep) void {
     if (target.os.tag == .linux) {
         exe.linkSystemLibrary("sdl2_ttf");
     } else if (target.os.tag == .windows) {
-        @compileError("Not implemented yet");
+        @panic("Linking TTF for windows is not implemented yet");
     } else if (target.isDarwin()) {
 
         // on MacOS, we require a brew install
