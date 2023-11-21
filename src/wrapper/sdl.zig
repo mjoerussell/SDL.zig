@@ -827,9 +827,9 @@ pub const Renderer = struct {
         return result;
     }
 
-    pub fn setViewport(ren: Renderer, rect: Rectangle) !void {
+    pub fn setViewport(ren: Renderer, rect: ?Rectangle) !void {
         var vp = rect;
-        if (c.SDL_RenderSetViewport(ren.ptr, vp.getSdlPtr()) < 0)
+        if (c.SDL_RenderSetViewport(ren.ptr, if (vp) |*unwrapped| unwrapped.getSdlPtr() else null) < 0)
             return makeError();
     }
 
